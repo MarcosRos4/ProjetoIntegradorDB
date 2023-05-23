@@ -1,3 +1,5 @@
+package ContaCorrenteProjeto;
+
 public class Verificador {
 
     public boolean verificarRG(String rg){//tem q ser inserido como "000000000"
