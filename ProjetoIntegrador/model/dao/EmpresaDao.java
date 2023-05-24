@@ -3,7 +3,7 @@ package ContaCorrenteProjeto.model.dao;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class ContasDao {
+public class EmpresaDao {
     // cria a conexão com o bando de dados
     Conexao conexao = new Conexao();
     // acessa as variaveis 
@@ -24,14 +24,14 @@ public class ContasDao {
         }
     }
     // insere uma nova conta à tabela contas
-    public void inserirContas(String nome, String agencias_numero_da_agencia) {
+    public void inserirEmpresas(String nome, String cnpj, String ie, String cep) {
         try {
             String query = String.format(
-                "INSERT INTO contas (`numero_da_conta`, `nome`, `saldo`, `agencias_numero_da_agencia`)"+
+                "INSERT INTO empresas (`id_empresas`, `cnpj_empresas`, `ie_empresas`, `cep_empresas`, `criacao_empresas`, `nome_empresas`)"+
                 // valores numero_da_conta é gerado automaticamente pelo BD, o saldo default é 0
-                " VALUES(default, '%s', default, %s);",nome, agencias_numero_da_agencia);
+                " VALUES(default, '%s', %s, %s, default, %s);",cnpj,ie,cep,nome);
             stm.executeUpdate(query);
-            System.out.println(String.format("Conta %s Incluida com SUCESSO" , nome));
+            System.out.println(String.format("Empresa %s Incluida com SUCESSO" , nome));
             
         } catch(Exception e) {
             System.out.println("Erro na Inclusao: "+ e);
@@ -49,22 +49,29 @@ public class ContasDao {
         }
     }
     // retorna o saldo atual de uma dada conta
-    public float getSaldo(String numero_da_conta) {
+    public String getEmpresa(String numero_da_empresa) {
+        String cnpj,ie,cep,criacao,nome;
         try {
-            result = stm.executeQuery(String.format("SELECT saldo FROM contas WHERE numero_da_conta = %s",
-            numero_da_conta));
+            result = stm.executeQuery(String.format("SELECT * FROM joptionpanedb.empresas WHERE id_empresas = %s;",
+            numero_da_empresa));
             result.next();
-            return result.getFloat(1);
+            cnpj=result.getString(2);
+            ie=result.getString(3);
+            cep=result.getString(4);
+            criacao=result.getString(5);
+            nome=result.getString(6);
+
+            return "Nome: "+nome+"\nCNPJ: "+cnpj+"\nIE: "+ie+"\nCEP: "+cep+"\nDATA DA CRIAÇÂO: "+criacao;
         } catch(Exception e) {
-            return 0;
+            return "Empresa não encontrada: "+e.getMessage();
         }
     }
     // exclui uma conta a partir de um numero_da_conta
-    public void excluirByNumero_da_Conta(String numero_da_conta) {
+    public void excluirByNumero_da_Empresa(String numero_da_empresa) {
         try {
-            String query = String.format("DELETE FROM contas WHERE numero_da_agencia = %s;", numero_da_conta);
+            String query = String.format("DELETE FROM empresas WHERE id_empresas = %s;", numero_da_empresa);
             stm.executeUpdate(query);
-            System.out.println(String.format("ID: %s EXCLUIDO COM SUCESSO", numero_da_conta));
+            System.out.println(String.format("ID: %s EXCLUIDO COM SUCESSO", numero_da_empresa));
             
         } catch(Exception e) {
             System.out.println("Erro na Exclusao: "+ e.getMessage());

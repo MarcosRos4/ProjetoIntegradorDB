@@ -1,75 +1,73 @@
 package ContaCorrenteProjeto;
 import ContaCorrenteProjeto.view.AppView;
-import ContaCorrenteProjeto.controller.ContaController;
+import ContaCorrenteProjeto.controller.EmpresaController;
 import ContaCorrenteProjeto.controller.TransferenciaController;
-import ContaCorrenteProjeto.model.dao.ContasDao;
+import ContaCorrenteProjeto.model.dao.EmpresaDao;
 public class App {
     // classe que faz as regras de negocio
-    static ContaController contaController;
+    static EmpresaController empresaController;
 
     static TransferenciaController transferenciaController;
     // classe que altera o BD
-    static ContasDao contasDao = new ContasDao();
+    static EmpresaDao empresaDao = new EmpresaDao();
     // classe que representa o UI
     static AppView interfacegrafica = new AppView();
     // variavel para imput do usuario
     static String respostaString;
 
+    static String nome,ie,cep,cnpj;
+
     public static void main(String[] args) {
         // o aplicativo começa com duas opções, ou logar com uma conta já existente ou criar uma nova conta
 
-        interfacegrafica.imprimir("Deseja fazer Login(0) ou Cadastrar nova Conta(1)?\nResposta: ");
+        interfacegrafica.imprimir("Deseja acessar as empresas(0) ou funcionarios(1)?\nResposta: ");
         respostaString = interfacegrafica.receberString();
         while (true) {
             // se escolher a opção 0 ele segue para o login e as opções de gerenciamento de conta
             if(respostaString.equals("0")){
-                interfacegrafica.imprimir("Digite o seu numero_da_conta por favor: ");
-                respostaString = interfacegrafica.receberString();
-                while (contasDao.getNome(respostaString) == null) {
-                    interfacegrafica.imprimir("Digite o seu numero_da_conta por favor: ");
-                    respostaString = interfacegrafica.receberString();
-                }
-                
                 try {
                     // intancia contaController com o numero_da_conta que vai ser acessada
-                    contaController = new ContaController(respostaString);
+                    empresaController = new EmpresaController(respostaString);
                     transferenciaController = new TransferenciaController(respostaString);
 
                     interfacegrafica.imprimir(String.format("Conta do usuário %s acessada!\n",
-                    contasDao.getNome(respostaString)));
+                    empresaDao.getNome(respostaString)));
                 
                 } catch (Exception e) {}
-                while (respostaString != "6") {
+                while (respostaString != "5") {
                 
-                    interfacegrafica.imprimir("O que deseja fazer?\nSaque(1) | Deposito(2) | Ver Saldo(3) | Ver Extrato(4) | Transferência(5) | Sair(6): ");
+                    interfacegrafica.imprimir("O que deseja fazer?\nAdicionar Empresa(1) | Ver empresa(2) | Atualizar empresa(3) | Excluir empresa(4)| Sair(5): ");
                     respostaString = interfacegrafica.receberString();
-                    // se 1 -  saque
+                    // se 1 -  Criar
                     if (respostaString.equals("1")) {
-                        interfacegrafica.imprimir("Digite o valor do saque: ");
-                        contaController.saque(interfacegrafica.receberFloat());
+                        interfacegrafica.imprimir("Digite o nome da empresa: ");
+                        nome=interfacegrafica.receberString();
+
+                        interfacegrafica.imprimir("Digite o cep da empresa: ");
+                        cep=interfacegrafica.receberString();
+
+                        interfacegrafica.imprimir("Digite o ie da empresa: ");
+                        ie =interfacegrafica.receberString();
+
+                        interfacegrafica.imprimir("Digite o cnpj da empresa: ");
+                        cnpj=interfacegrafica.receberString();
+
+                        empresaDao.inserirEmpresas( nome,  cnpj,  ie, cep);
                     }
-                    // se 2 - deposito
+                    // se 2 - Ver
                     else if(respostaString.equals("2")){
-                        interfacegrafica.imprimir("Digite o valor do depósito: ");
-                        contaController.deposito(interfacegrafica.receberFloat());
+                        interfacegrafica.imprimir("Digite o ID da empresa: ");
+                        System.out.println(empresaDao.getEmpresa(interfacegrafica.receberString()));
                     }
-                    // se 3 - mostra o saldo atual
+                    // se 3 - Atualizar
                     else if(respostaString.equals("3")){
-                        interfacegrafica.imprimir(String.format("%s\n", contaController.verSaldo()));
                     }
-                    // se 4 - mostra o histórico de transferências
+                    // se 4 - Excluir
                     else if(respostaString.equals("4")){
-                        transferenciaController.mostrarTransferencias();
+                        interfacegrafica.imprimir("Digite o ID da empresa que sera excluida: ");
+                        empresaDao.excluirByNumero_da_Empresa(interfacegrafica.receberString());
                     }
-                    // se 5 - transferência
                     else if (respostaString.equals("5")) {
-                        interfacegrafica.imprimir("Qual o valor a ser transferido?: ");
-                        Float valor =  interfacegrafica.receberFloat();
-                        interfacegrafica.imprimir("Qual a conta destino da transferência?: ");
-                        String conta_destino = interfacegrafica.receberString();
-                        transferenciaController.transferir(conta_destino, valor.toString());
-                    }
-                    else if (respostaString.equals("6")) {
                         interfacegrafica.imprimir("Deseja fazer Login(0) ou Cadastrar nova Conta(1)?\nResposta: ");
                         respostaString = interfacegrafica.receberString();
                         break;
@@ -82,15 +80,7 @@ public class App {
             }
             // se 1 - cadastra uma nova conta
             else if(respostaString.equals("1")){
-            interfacegrafica.imprimir("Para cadastrar uma nova conta digite seu NOME e NUMERO_DA_AGENCIA."+
-            "\nAgencias disponíveis: 1, 2, 3 e 4"+
-            "\nNome: ");
-            String nome = interfacegrafica.receberString();
-            interfacegrafica.imprimir("Agencia Escolhida: ");
-            String numero_da_agencia = interfacegrafica.receberString();
-            contasDao.inserirContas(nome, numero_da_agencia);
-            interfacegrafica.imprimir("Deseja fazer Login(0) ou Cadastrar nova Conta(1)?\nResposta: ");
-            respostaString = interfacegrafica.receberString();
+
         }
             // se nenhuma das anteriores - mostra que a opção foi invalida e termina a execução do programa
             else{
