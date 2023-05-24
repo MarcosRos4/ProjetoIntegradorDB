@@ -3,14 +3,14 @@ package ContaCorrenteProjeto.model.dao;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class TransferenciasDao {
+public class FuncionariosDao {
     Conexao conexao = new Conexao();
     // acessa as variaveis
     Statement stm = conexao.getStm();
     ResultSet result = conexao.getResult();
 
     public void criarTransferencia(String conta_comeco,String conta_destino, String valor){
-        try { 
+        try {
             stm.executeUpdate(String.format(
                 "INSERT INTO transferencias (`numero_da_transferencia`,`valor`,`contas_numero_da_conta`, `conta_destino`, `horario_transferencia`)"+
                 // valores numero_da_conta é gerado automaticamente pelo BD, o saldo default é 0
@@ -36,7 +36,7 @@ public class TransferenciasDao {
                 result.getString("numero_da_transferencia"), result.getString("conta_destino"),
                 result.getString("valor"), result.getString("horario_transferencia")));
             } while (result.next());
-            
+
 
         } catch(Exception e) {
             System.out.println("Erro na Exibição de Extrato: "+ e);

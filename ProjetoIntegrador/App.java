@@ -15,7 +15,7 @@ public class App {
     // variavel para imput do usuario
     static String respostaString;
 
-    static String nome,ie,cep,cnpj;
+    static String nome,ie,cep,cnpj,id;
 
     public static void main(String[] args) {
         // o aplicativo começa com duas opções, ou logar com uma conta já existente ou criar uma nova conta
@@ -25,15 +25,6 @@ public class App {
         while (true) {
             // se escolher a opção 0 ele segue para o login e as opções de gerenciamento de conta
             if(respostaString.equals("0")){
-                try {
-                    // intancia contaController com o numero_da_conta que vai ser acessada
-                    empresaController = new EmpresaController(respostaString);
-                    transferenciaController = new TransferenciaController(respostaString);
-
-                    interfacegrafica.imprimir(String.format("Conta do usuário %s acessada!\n",
-                    empresaDao.getNome(respostaString)));
-                
-                } catch (Exception e) {}
                 while (respostaString != "5") {
                 
                     interfacegrafica.imprimir("O que deseja fazer?\nAdicionar Empresa(1) | Ver empresa(2) | Atualizar empresa(3) | Excluir empresa(4)| Sair(5): ");
@@ -61,6 +52,22 @@ public class App {
                     }
                     // se 3 - Atualizar
                     else if(respostaString.equals("3")){
+                        interfacegrafica.imprimir("Digite o ID da empresa para atualizar: ");
+                        id=interfacegrafica.receberString();
+
+                        interfacegrafica.imprimir("Digite o novo nome da empresa: ");
+                        nome=interfacegrafica.receberString();
+
+                        interfacegrafica.imprimir("Digite o novo cep da empresa: ");
+                        cep=interfacegrafica.receberString();
+
+                        interfacegrafica.imprimir("Digite o novo ie da empresa: ");
+                        ie =interfacegrafica.receberString();
+
+                        interfacegrafica.imprimir("Digite o novo cnpj da empresa: ");
+                        cnpj=interfacegrafica.receberString();
+
+                        empresaDao.atualizarEmpresa(nome, cnpj, ie, cep, id);
                     }
                     // se 4 - Excluir
                     else if(respostaString.equals("4")){

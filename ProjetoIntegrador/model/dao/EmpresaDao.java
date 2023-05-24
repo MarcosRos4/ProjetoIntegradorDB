@@ -11,17 +11,7 @@ public class EmpresaDao {
     ResultSet result = conexao.getResult();
     // imprime todas as contas disponíveis
     public void listarContas() {
-        try {
-            String minhaQuery = "SELECT * FROM contas ORDER BY nome";
-            // executa a query 
-            result = stm.executeQuery(minhaQuery);
-            // enquanto houver uma resposta da query no Result, imprime os dados da conta
-            while (result.next()) {
-                System.out.println("ID: "+result.getString("id") + " - Nome: "+result.getString("nome") );
-            }
-        } catch(Exception e) {
-            System.out.println("Erro na lista: "+ e);
-        }
+
     }
     // insere uma nova conta à tabela contas
     public void inserirEmpresas(String nome, String cnpj, String ie, String cep) {
@@ -38,12 +28,21 @@ public class EmpresaDao {
         }
     }
     // altera o saldo de uma conta para um dado valor
-    public void setSaldo(String numero_da_conta, String saldo) {
+    public void atualizarEmpresa(String nome, String cnpj, String ie, String cep, String id) {
         try {
-            String query = String.format("UPDATE contas SET saldo = %s WHERE numero_da_conta = %s;",
-            saldo, numero_da_conta);
+            String query = String.format("UPDATE empresas SET nome_empresas = %s WHERE id_empresas = %s;", nome, id);
             stm.executeUpdate(query);
-            System.out.println(String.format("Conta Numero: %s alterada com sucesso" , numero_da_conta));
+
+            query = String.format("UPDATE empresas SET cnpj_empresas = %s WHERE id_empresas = %s;", cnpj, id);
+            stm.executeUpdate(query);
+
+            query = String.format("UPDATE empresas SET ie_empresas = %s WHERE id_empresas = %s;", ie, id);
+            stm.executeUpdate(query);
+
+            query = String.format("UPDATE empresas SET cep_empresas = %s WHERE id_empresas = %s;", cep, id);
+            stm.executeUpdate(query);
+
+            System.out.println(String.format("Empresa Numero: %s alterada com sucesso" , id));
         } catch(Exception e) {
             System.out.println("Erro na Alteracao: "+ e);
         }
@@ -77,17 +76,4 @@ public class EmpresaDao {
             System.out.println("Erro na Exclusao: "+ e.getMessage());
         }
     }
-    // retorna o nome de uma dada conta a partir do numero_da_conta
-    public String getNome(String numero_da_conta){
-        try {
-            String minhaQuery = String.format("SELECT nome FROM contas WHERE numero_da_conta = %s", numero_da_conta);
-            result = stm.executeQuery(minhaQuery);
-            result.next();
-            return result.getString(1);
-        } catch(Exception e) {
-            System.out.println("Conta não encontrada.");
-            return null;
-        }
-    }
-
 }
