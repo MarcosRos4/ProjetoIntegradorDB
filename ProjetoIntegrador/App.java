@@ -4,12 +4,10 @@ import ContaCorrenteProjeto.view.AppView;
 import ContaCorrenteProjeto.controller.EmpresaController;
 import ContaCorrenteProjeto.controller.TransferenciaController;
 import ContaCorrenteProjeto.model.dao.EmpresaDao;
-public class App {
-    // classe que faz as regras de negocio
-    static EmpresaController empresaController;
+import ContaCorrenteProjeto.view.MenuView;
 
-    static TransferenciaController transferenciaController;
-    // classe que altera o BD
+public class App {
+
     static EmpresaDao empresaDao = new EmpresaDao();
 
     static FuncionariosDao funcionariosDao=new FuncionariosDao();
@@ -21,6 +19,8 @@ public class App {
     static String nome,ie,cep,cnpj,id,rg,cpf,id_empresa;
 
     public static void main(String[] args) {
+
+        new MenuView();
 
         interfacegrafica.imprimir("Deseja acessar as empresas(0) ou funcionarios(1)?\nResposta: ");
         respostaString = interfacegrafica.receberString();
