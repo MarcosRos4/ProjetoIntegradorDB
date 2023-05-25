@@ -1,4 +1,5 @@
 package ContaCorrenteProjeto;
+import ContaCorrenteProjeto.model.dao.FuncionariosDao;
 import ContaCorrenteProjeto.view.AppView;
 import ContaCorrenteProjeto.controller.EmpresaController;
 import ContaCorrenteProjeto.controller.TransferenciaController;
@@ -10,20 +11,21 @@ public class App {
     static TransferenciaController transferenciaController;
     // classe que altera o BD
     static EmpresaDao empresaDao = new EmpresaDao();
+
+    static FuncionariosDao funcionariosDao=new FuncionariosDao();
     // classe que representa o UI
     static AppView interfacegrafica = new AppView();
     // variavel para imput do usuario
     static String respostaString;
 
-    static String nome,ie,cep,cnpj,id;
+    static String nome,ie,cep,cnpj,id,rg,cpf,id_empresa;
 
     public static void main(String[] args) {
-        // o aplicativo começa com duas opções, ou logar com uma conta já existente ou criar uma nova conta
 
         interfacegrafica.imprimir("Deseja acessar as empresas(0) ou funcionarios(1)?\nResposta: ");
         respostaString = interfacegrafica.receberString();
         while (true) {
-            // se escolher a opção 0 ele segue para o login e as opções de gerenciamento de conta
+
             if(respostaString.equals("0")){
                 while (respostaString != "5") {
                 
@@ -85,8 +87,68 @@ public class App {
                     }
                 }
             }
-            // se 1 - cadastra uma nova conta
+
             else if(respostaString.equals("1")){
+
+                while (respostaString != "5") {
+
+                    interfacegrafica.imprimir("O que deseja fazer?\nAdicionar Funcionario(a)(1) | Ver Funcionario(a)(2) | Atualizar Funcionario(a)(3) | Excluir Funcionario(a)(4)| Sair(5): ");
+                    respostaString = interfacegrafica.receberString();
+                    // se 1 -  Criar
+                    if (respostaString.equals("1")) {
+                        interfacegrafica.imprimir("Digite o nome da Funcionario(a): ");
+                        nome=interfacegrafica.receberString();
+
+                        interfacegrafica.imprimir("Digite o rg da Funcionario(a) Exemplo: 000000000\n: ");
+                        rg=interfacegrafica.receberString();
+
+                        interfacegrafica.imprimir("Digite o cpf da Funcionario(a) Exemplo :000.000.000-00\n: ");
+                        cpf =interfacegrafica.receberString();
+
+                        interfacegrafica.imprimir("Digite o id da empresa do Funcionario(a): ");
+                        id_empresa=interfacegrafica.receberString();
+
+                        funcionariosDao.inserirFuncionario( nome,  rg,  cpf, id_empresa);
+                    }
+                    // se 2 - Ver
+                    else if(respostaString.equals("2")){
+                        interfacegrafica.imprimir("Digite o ID do(a) funcionario(a): ");
+                        System.out.println(funcionariosDao.getFuncionario(interfacegrafica.receberString()));
+                    }
+                    // se 3 - Atualizar
+                    else if(respostaString.equals("3")){
+                        interfacegrafica.imprimir("Digite o ID do(a) funcionario(a) para atualizar: ");
+                        id=interfacegrafica.receberString();
+
+                        interfacegrafica.imprimir("Digite o novo nome do(a) funcionario(a): ");
+                        nome=interfacegrafica.receberString();
+
+                        interfacegrafica.imprimir("Digite o novo cpf do(a) funcionario(a) Exemplo :000.000.000-00\n: ");
+                        cpf=interfacegrafica.receberString();
+
+                        interfacegrafica.imprimir("Digite o novo rg do(a) funcionario(a) Exemplo: 000000000\n: ");
+                        rg =interfacegrafica.receberString();
+
+                        interfacegrafica.imprimir("Digite o novo id da empresa do(a) funcionario(a): ");
+                        id_empresa=interfacegrafica.receberString();
+
+                        funcionariosDao.atualizarFuncionario(nome, cpf, rg, id_empresa, id);
+                    }
+                    // se 4 - Excluir
+                    else if(respostaString.equals("4")){
+                        interfacegrafica.imprimir("Digite o ID do(a) funcionario(a) que sera excluida: ");
+                        funcionariosDao.excluirByNumero_do_Funcionario(interfacegrafica.receberString());
+                    }
+                    else if (respostaString.equals("5")) {
+                        interfacegrafica.imprimir("Deseja fazer Login(0) ou Cadastrar nova Conta(1)?\nResposta: ");
+                        respostaString = interfacegrafica.receberString();
+                        break;
+                    }
+                    // se nenhuma das anteriores - mostra que a opção foi invalida e termina a execução do programa
+                    else{
+                        interfacegrafica.imprimir("Opção Inválida!");
+                    }
+                }
 
         }
             // se nenhuma das anteriores - mostra que a opção foi invalida e termina a execução do programa

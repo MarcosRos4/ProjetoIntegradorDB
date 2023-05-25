@@ -44,7 +44,7 @@ DROP TABLE IF EXISTS `JOptionpaneDB`.`funcionarios` ;
 CREATE TABLE IF NOT EXISTS `JOptionpaneDB`.`funcionarios` (
   `id_funcionarios` INT NOT NULL AUTO_INCREMENT,
   `rg_funcionarios` CHAR(9) NOT NULL,
-  `cpf_funcionarios` CHAR(11) NOT NULL,
+  `cpf_funcionarios` VARCHAR(45) NOT NULL,
   `nome_funcionarios` VARCHAR(45) NULL,
   `criacao_funcionarios` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `empresas_id_empresas` INT NOT NULL,
@@ -82,6 +82,36 @@ CREATE TABLE `enderecos` (
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+INSERT INTO `joptionpanedb`.`empresas`
+(`id_empresas`,
+`cnpj_empresas`,
+`ie_empresas`,
+`cep_empresas`,
+`criacao_empresas`,
+`nome_empresas`)
+VALUES
+(default,
+"12345678901234",
+"123456789",
+"12345678",
+default,
+"Senac");
+
+INSERT INTO `joptionpanedb`.`empresas`
+(`id_empresas`,
+`cnpj_empresas`,
+`ie_empresas`,
+`cep_empresas`,
+`criacao_empresas`,
+`nome_empresas`)
+VALUES
+(default,
+"43210987654321",
+"987654321",
+"87654321",
+default,
+"Makenzie");
 
 
 INSERT INTO `joptionpanedb`.`funcionarios`
@@ -144,32 +174,3 @@ VALUES
 default,
 1);
 
-INSERT INTO `joptionpanedb`.`empresas`
-(`id_empresas`,
-`cnpj_empresas`,
-`ie_empresas`,
-`cep_empresas`,
-`criacao_empresas`,
-`nome_empresas`)
-VALUES
-(default,
-"12345678901234",
-"123456789",
-"12345678",
-default,
-"Senac");
-
-INSERT INTO `joptionpanedb`.`empresas`
-(`id_empresas`,
-`cnpj_empresas`,
-`ie_empresas`,
-`cep_empresas`,
-`criacao_empresas`,
-`nome_empresas`)
-VALUES
-(default,
-"43210987654321",
-"987654321",
-"87654321",
-default,
-"Makenzie");
