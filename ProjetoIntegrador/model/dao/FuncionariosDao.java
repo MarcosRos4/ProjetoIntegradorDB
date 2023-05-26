@@ -2,6 +2,7 @@ package ContaCorrenteProjeto.model.dao;
 
 import ContaCorrenteProjeto.Verificador;
 
+import javax.swing.*;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -24,13 +25,16 @@ public class FuncionariosDao {
                                 " VALUES(default, '%s', '%s', '%s', default, '%s');", rg, cpf, nome, id_empresa);
                 stm.executeUpdate(query);
                 System.out.println(String.format("Funcionario(a) %s Incluido(a) com SUCESSO", nome));
+                JOptionPane.showMessageDialog(null,String.format("Funcionario(a) %s Incluido(a) com SUCESSO", nome));
+
 
             } catch (Exception e) {
-                System.out.println("Erro na Inclusao: " + e);
+                JOptionPane.showMessageDialog(null,"Erro na Inclusao: " + e);
+
             }
         }
         else
-            System.out.println("RG ou CPF invalido!!!");
+            JOptionPane.showMessageDialog(null,"CPF ou RG invalido");
     }
 
     public void atualizarFuncionario(String nome, String cpf, String rg, String id_empresa, String id) {
@@ -55,7 +59,7 @@ public class FuncionariosDao {
         }
         }
         else
-            System.out.println("RG ou CPF invalido!!!");
+            JOptionPane.showMessageDialog(null,"CPF ou RG invalido");
     }
 
     public String getFuncionario(String numero_do_funcionario) {
@@ -69,8 +73,7 @@ public class FuncionariosDao {
             nome=result.getString(4);
             criacao=result.getString(5);
             id_empresa=result.getString(6);
-
-            return "Nome: "+nome+"\nCPF: "+cpf+"\nRG: "+rg+"\nID da empresa: "+id_empresa+"\nDATA DA CRIAÇÂO: "+criacao;
+            return String.format("<html>Nome: %s<br/>CPF: %s<br/>RG: %s<br/>ID da empresa: %s<br/>DATA DA CRIAÇÂO: %s</html>",nome,cpf,rg,id_empresa,criacao);
         } catch(Exception e) {
             return "Empresa não encontrada: "+e.getMessage();
         }
@@ -80,10 +83,10 @@ public class FuncionariosDao {
         try {
             String query = String.format("DELETE FROM funcionarios WHERE id_funcionarios = %s;", numero_do_funcionario);
             stm.executeUpdate(query);
-            System.out.println(String.format("ID: %s EXCLUIDO COM SUCESSO", numero_do_funcionario));
+            JOptionPane.showMessageDialog(null,String.format("ID: %s EXCLUIDO COM SUCESSO", numero_do_funcionario));
 
         } catch(Exception e) {
-            System.out.println("Erro na Exclusao: "+ e.getMessage());
+            JOptionPane.showMessageDialog(null,"Erro na Exclusao: "+ e.getMessage());
         }
     }
 }

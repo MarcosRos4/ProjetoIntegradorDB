@@ -1,5 +1,6 @@
 package ContaCorrenteProjeto.view;
 
+import ContaCorrenteProjeto.model.dao.EmpresaDao;
 import ContaCorrenteProjeto.model.dao.FuncionariosDao;
 
 import javax.swing.*;
@@ -7,17 +8,15 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
-
-public class CriarFuncionarioVIew  extends JFrame implements ActionListener {
+public class CriarEmpresaView  extends JFrame implements ActionListener {
     JButton b1, b2;
     JLabel t1;
-    JTextField cpf,nome,rg,id_empresa;
+    JTextField cnpj,nome,ie,cep;
 
-    static String CPF,NOME,RG,ID_EMPRESA;
+    static String CNPJ,NOME,IE,CEP;
 
-    static FuncionariosDao funcionariosDao=new FuncionariosDao();
-    public CriarFuncionarioVIew(){
+    static EmpresaDao empresaDao=new EmpresaDao();
+    public CriarEmpresaView(){
         setVisible(true);
         setSize(640,480);
         setTitle("Criação de funcionarios");
@@ -29,18 +28,18 @@ public class CriarFuncionarioVIew  extends JFrame implements ActionListener {
         getContentPane().setBackground(new Color(255,255,255));
 
 
-         b1= criarJButton("Criar",'G',150,240);
-         b2= criarJButton("Voltar",'C',350,240);
-        newJLabel("CPF:",5,60,30,20);
-        cpf=newJTextField("000.000.000-00",50,60,170,30);
-        newJLabel("RG:",230,60,30,20);
-        rg=newJTextField("000000000",275,60,170,30);
+        b1= criarJButton("Criar",'G',150,240);
+        b2= criarJButton("Voltar",'C',350,240);
+        newJLabel("CEP:",5,60,30,20);
+        cep=newJTextField("",50,60,170,30);
+        newJLabel("CNPJ:",230,60,40,20);
+        cnpj=newJTextField("",275,60,170,30);
 
         newJLabel("NOME:",5,120,40,20);
         nome=newJTextField("",70,120,200,30);
 
-        newJLabel("ID DA EMPRESA:",5,180,100,20);
-        id_empresa=newJTextField("",120,180,200,30);
+        newJLabel("IE DA EMPRESA:",5,180,100,20);
+        ie=newJTextField("",120,180,200,30);
 
     }
 
@@ -96,12 +95,12 @@ public class CriarFuncionarioVIew  extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent e){
         if (e.getSource() == b1){
-            CPF=cpf.getText();
-            RG=rg.getText();
+            CEP=cep.getText();
+            IE=ie.getText();
             NOME=nome.getText();
-            ID_EMPRESA=id_empresa.getText();
+            CNPJ=cnpj.getText();
 
-            funcionariosDao.inserirFuncionario(NOME,RG,CPF,ID_EMPRESA);
+            empresaDao.inserirEmpresas(NOME,CNPJ,IE,CEP);
 
         }
         else if (e.getSource() == b2){

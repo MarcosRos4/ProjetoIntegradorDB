@@ -60,7 +60,7 @@ public class MenuView extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e){
         if (e.getSource() == b1){
             this.setVisible(false);
-            FuncionarioView fv= new FuncionarioView();
+            EmpresaView ev= new EmpresaView();
         }
         else if (e.getSource() == b2){
             this.setVisible(false);

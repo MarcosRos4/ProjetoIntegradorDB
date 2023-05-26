@@ -16,7 +16,7 @@ public class FuncionarioView  extends JFrame implements ActionListener {
         getContentPane().setLayout(gl);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        t1= criarRotulo("ESCOLHA QUEM DESEJA ACESSAR");
+        t1= criarRotulo("ESCOLHA O QUE DESEJA FAZER");
         b1 = criarBotao("ADICIONAR FUNCIONARIO(A)");
         b2= criarBotao("VER FUNCIONARIO(A)");
         b3= criarBotao("ATUALIZAR FUNCIONARIO(A)");
@@ -70,9 +70,13 @@ public class FuncionarioView  extends JFrame implements ActionListener {
 
         }
         else if (e.getSource() == b2){
+            this.setVisible(false);
+            VerFuncionarioView vfv= new VerFuncionarioView();
 
         }
         else if (e.getSource() == b3){
+            this.setVisible(false);
+            AlterarFuncionarioView afv= new AlterarFuncionarioView();
 
         }
         else if (e.getSource() == b4){

@@ -1,5 +1,6 @@
 package ContaCorrenteProjeto.model.dao;
 // import das classes para a execução das querys e a obtenção das respostas
+import javax.swing.*;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -18,7 +19,7 @@ public class EmpresaDao {
                 // valores numero_da_conta é gerado automaticamente pelo BD, o saldo default é 0
                 " VALUES(default, '%s', '%s', '%s', default, '%s');",cnpj,ie,cep,nome);
             stm.executeUpdate(query);
-            System.out.println(String.format("Empresa %s Incluida com SUCESSO" , nome));
+            JOptionPane.showMessageDialog(null,String.format("Empresa %s Incluida com SUCESSO" , nome));
             
         } catch(Exception e) {
             System.out.println("Erro na Inclusao: "+ e);
@@ -39,9 +40,10 @@ public class EmpresaDao {
             query = String.format("UPDATE empresas SET cep_empresas = '%s' WHERE id_empresas = %s;", cep, id);
             stm.executeUpdate(query);
 
-            System.out.println(String.format("Empresa Numero: %s alterada com sucesso" , id));
+            JOptionPane.showMessageDialog(null,String.format("Empresa Numero: %s alterada com sucesso" , id));
         } catch(Exception e) {
-            System.out.println("Erro na Alteracao: "+ e);
+            JOptionPane.showMessageDialog(null,"Erro na Alteracao: "+ e);
+
         }
     }
 
@@ -67,10 +69,10 @@ public class EmpresaDao {
         try {
             String query = String.format("DELETE FROM empresas WHERE id_empresas = %s;", numero_da_empresa);
             stm.executeUpdate(query);
-            System.out.println(String.format("ID: %s EXCLUIDO COM SUCESSO", numero_da_empresa));
-            
+            JOptionPane.showMessageDialog(null,String.format("ID: %s EXCLUIDO COM SUCESSO", numero_da_empresa));
         } catch(Exception e) {
-            System.out.println("Erro na Exclusao: "+ e.getMessage());
+            JOptionPane.showMessageDialog(null,"Erro na Exclusao: "+ e.getMessage());
+
         }
     }
 }
