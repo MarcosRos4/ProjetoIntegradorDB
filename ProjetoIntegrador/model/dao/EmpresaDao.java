@@ -59,7 +59,7 @@ public class EmpresaDao {
             criacao=result.getString(5);
             nome=result.getString(6);
 
-            return "Nome: "+nome+"\nCNPJ: "+cnpj+"\nIE: "+ie+"\nCEP: "+cep+"\nDATA DA CRIAÇÂO: "+criacao;
+            return String.format("<html>Nome: %s<br/>CEP: %s<br/>CNPJ: %s<br/>IE da empresa: %s<br/>DATA DA CRIAÇÂO: %s</html>",nome,cep,cnpj,ie,criacao);
         } catch(Exception e) {
             return "Empresa não encontrada: "+e.getMessage();
         }

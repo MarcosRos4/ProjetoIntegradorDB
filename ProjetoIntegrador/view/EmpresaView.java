@@ -71,14 +71,17 @@ public class EmpresaView extends JFrame implements ActionListener {
         }
         else if (e.getSource() == b2){
             this.setVisible(false);
+            VerEmpresaView vev= new VerEmpresaView();
 
         }
         else if (e.getSource() == b3){
             this.setVisible(false);
+            AlterarEmpresaView aev= new AlterarEmpresaView();
 
         }
         else if (e.getSource() == b4){
             this.setVisible(false);
+            ExcluirEmpresaView eev= new ExcluirEmpresaView();
         }
 
         else if (e.getSource() == b5){
