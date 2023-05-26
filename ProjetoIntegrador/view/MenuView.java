@@ -9,6 +9,7 @@ public class MenuView extends JFrame implements ActionListener {
     JButton b1, b2;
     JLabel t1;
     String txt = "";
+    JMenuItem empresa,funcionario,sair;
 
     public MenuView(){
         setTitle("Menu");
@@ -17,6 +18,20 @@ public class MenuView extends JFrame implements ActionListener {
         getContentPane().setLayout(gl);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        JMenuBar menu= new JMenuBar();
+        JMenu menus=new JMenu("Menus");
+        menus.setMnemonic('M');
+        menu.add(menus);
+        empresa= new JMenuItem("empresas");
+        funcionario= new JMenuItem("funcionarios");
+        sair= new JMenuItem("sair");
+        menus.add(empresa);
+        menus.add(funcionario);
+        menus.add(sair);
+        setJMenuBar(menu);
+        empresa.addActionListener(this);
+        funcionario.addActionListener(this);
+        sair.addActionListener(this);
         t1= criarRotulo("ESCOLHA QUEM DESEJA ACESSAR");
         b1 = criarBotao("EMPRESAS");
         b2 = criarBotao("FUNCIONARIOS");
@@ -66,6 +81,20 @@ public class MenuView extends JFrame implements ActionListener {
             this.setVisible(false);
             FuncionarioView fv= new FuncionarioView();
         }
+
+        if(e.getSource()== empresa){
+            this.setVisible(false);
+            EmpresaView ev= new EmpresaView();
+        }
+        else if (e.getSource() == funcionario){
+            this.setVisible(false);
+            FuncionarioView fv= new FuncionarioView();
+        }
+        else if (e.getSource() == sair){
+            this.setVisible(false);
+            System.exit(0);
+        }
+
     }
 
 }

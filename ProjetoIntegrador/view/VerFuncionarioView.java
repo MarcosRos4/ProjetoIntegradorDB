@@ -12,8 +12,9 @@ public class VerFuncionarioView extends JFrame implements ActionListener {
     JButton b1, b2;
 
     JTextField t1;
-
     JLabel j1;
+    JMenuItem menuMain,empresa,funcionario,sair;
+
 
     static FuncionariosDao funcionariosDao=new FuncionariosDao();
 
@@ -23,6 +24,24 @@ public class VerFuncionarioView extends JFrame implements ActionListener {
         setTitle("Ver funcionario(a)");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        JMenuBar menu= new JMenuBar();
+        JMenu menus=new JMenu("Menus");
+        menus.setMnemonic('M');
+        menu.add(menus);
+        menuMain= new JMenuItem("menu");
+        empresa= new JMenuItem("empresas");
+        funcionario= new JMenuItem("funcionarios");
+        sair= new JMenuItem("sair");
+        menus.add(menuMain);
+        menus.add(empresa);
+        menus.add(funcionario);
+        menus.add(sair);
+        setJMenuBar(menu);
+        menuMain.addActionListener(this);
+        empresa.addActionListener(this);
+        funcionario.addActionListener(this);
+        sair.addActionListener(this);
 
         //Remove o layout padrão
         getContentPane().setLayout(null);
@@ -34,8 +53,8 @@ public class VerFuncionarioView extends JFrame implements ActionListener {
         j1=newJLabel("",150,150,500,200);
 
 
-        b1= criarJButton("Ver",'G',150,400);
-        b2= criarJButton("Voltar",'C',350,400);
+        b1= criarJButton("Ver",'G',150,350);
+        b2= criarJButton("Voltar",'C',350,350);
 
 
 
@@ -102,6 +121,23 @@ public class VerFuncionarioView extends JFrame implements ActionListener {
         else if (e.getSource() == b2){
             this.setVisible(false);
             FuncionarioView fv= new FuncionarioView();
+        }
+
+        if(e.getSource()== empresa){
+            this.setVisible(false);
+            EmpresaView ev= new EmpresaView();
+        }
+        else if (e.getSource() == funcionario){
+            this.setVisible(false);
+            FuncionarioView fv= new FuncionarioView();
+        }
+        else if (e.getSource() == menuMain){
+            this.setVisible(false);
+            MenuView mv= new MenuView();
+        }
+        else if (e.getSource() == sair){
+            this.setVisible(false);
+            System.exit(0);
         }
     }
 }

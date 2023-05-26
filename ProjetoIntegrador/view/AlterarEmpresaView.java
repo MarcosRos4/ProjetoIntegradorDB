@@ -12,6 +12,7 @@ public class AlterarEmpresaView extends JFrame implements ActionListener {
     JButton b1, b2;
     JLabel t1;
     JTextField cnpj, nome, ie, cep,id;
+    JMenuItem menuMain,empresa,funcionario,sair;
 
     static String CNPJ,NOME,IE,CEP,ID;
     static EmpresaDao empresaDao= new EmpresaDao();
@@ -22,6 +23,24 @@ public class AlterarEmpresaView extends JFrame implements ActionListener {
         setTitle("Atualização de empresas");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        JMenuBar menu= new JMenuBar();
+        JMenu menus=new JMenu("Menus");
+        menus.setMnemonic('M');
+        menu.add(menus);
+        menuMain= new JMenuItem("menu");
+        empresa= new JMenuItem("empresas");
+        funcionario= new JMenuItem("funcionarios");
+        sair= new JMenuItem("sair");
+        menus.add(menuMain);
+        menus.add(empresa);
+        menus.add(funcionario);
+        menus.add(sair);
+        setJMenuBar(menu);
+        menuMain.addActionListener(this);
+        empresa.addActionListener(this);
+        funcionario.addActionListener(this);
+        sair.addActionListener(this);
 
         //Remove o layout padrão
         getContentPane().setLayout(null);
@@ -108,6 +127,23 @@ public class AlterarEmpresaView extends JFrame implements ActionListener {
         } else if (e.getSource() == b2) {
             this.setVisible(false);
             FuncionarioView fv = new FuncionarioView();
+        }
+
+        if(e.getSource()== empresa){
+            this.setVisible(false);
+            EmpresaView ev= new EmpresaView();
+        }
+        else if (e.getSource() == funcionario){
+            this.setVisible(false);
+            FuncionarioView fv= new FuncionarioView();
+        }
+        else if (e.getSource() == menuMain){
+            this.setVisible(false);
+            MenuView mv= new MenuView();
+        }
+        else if (e.getSource() == sair){
+            this.setVisible(false);
+            System.exit(0);
         }
     }
 }

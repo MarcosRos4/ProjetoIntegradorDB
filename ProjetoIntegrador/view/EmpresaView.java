@@ -8,6 +8,8 @@ import java.awt.event.ActionListener;
 public class EmpresaView extends JFrame implements ActionListener {
     JButton b1, b2,b3,b4,b5;
     JLabel t1;
+    JMenuItem menuMain,funcionario,sair;
+
 
     public EmpresaView(){
         setTitle("Menu Empresa");
@@ -15,6 +17,22 @@ public class EmpresaView extends JFrame implements ActionListener {
         GridLayout gl = new GridLayout(6,1,5,5);
         getContentPane().setLayout(gl);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        JMenuBar menu= new JMenuBar();
+        JMenu menus=new JMenu("Menus");
+        menus.setMnemonic('M');
+        menu.add(menus);
+        menuMain= new JMenuItem("menu");
+        funcionario= new JMenuItem("funcionarios");
+        sair= new JMenuItem("sair");
+        menus.add(menuMain);
+        menus.add(funcionario);
+        menus.add(sair);
+        setJMenuBar(menu);
+        menuMain.addActionListener(this);
+        funcionario.addActionListener(this);
+        sair.addActionListener(this);
+
         setLocationRelativeTo(null);
         t1= criarRotulo("ESCOLHA O QUE DESEJA FAZER");
         b1 = criarBotao("ADICIONAR EMPRESA");
@@ -83,10 +101,22 @@ public class EmpresaView extends JFrame implements ActionListener {
             this.setVisible(false);
             ExcluirEmpresaView eev= new ExcluirEmpresaView();
         }
-
         else if (e.getSource() == b5){
             this.setVisible(false);
             MenuView mv= new MenuView();
+        }
+
+         if (e.getSource() == funcionario){
+            this.setVisible(false);
+            FuncionarioView fv= new FuncionarioView();
+        }
+        else if (e.getSource() == menuMain){
+            this.setVisible(false);
+            MenuView mv= new MenuView();
+        }
+        else if (e.getSource() == sair){
+            this.setVisible(false);
+            System.exit(0);
         }
     }
 
