@@ -62,4 +62,47 @@ public class Verificador {
          else
              return false;
      }
+
+    public static boolean verificarCNPJ(String cnpj){//Precisa inserir o CNPJ como "00.000.000/0000-00"
+        String S1,S2,S3,S4,S5,S6,S7,S8,S9, S10, S11, S12, confere = "";
+        int N1, N2 , N3, N4, N5, N6, N7, N8, N9, N10, N11, N12, verificador1, verificador2;
+        S1= cnpj.substring(0, 1); N1 = Integer.parseInt(S1);
+        S2= cnpj.substring(1, 2); N2 = Integer.parseInt(S2);
+
+        S3= cnpj.substring(3, 4); N3 = Integer.parseInt(S3);
+        S4= cnpj.substring(4, 5); N4 = Integer.parseInt(S4);
+        S5= cnpj.substring(5, 6); N5 = Integer.parseInt(S5);
+
+        S6= cnpj.substring(7, 8); N6 = Integer.parseInt(S6);
+        S7= cnpj.substring(8, 9); N7 = Integer.parseInt(S7);
+        S8= cnpj.substring(9, 10); N8 = Integer.parseInt(S8);
+
+        S9= cnpj.substring(11, 12); N9 = Integer.parseInt(S9);
+        S10= cnpj.substring(12, 13); N10 = Integer.parseInt(S10);
+        S11= cnpj.substring(13, 14); N11 = Integer.parseInt(S11);
+        S12= cnpj.substring(14, 15); N12 = Integer.parseInt(S12);
+
+        verificador1 = (N12 * 2 + N11 * 3 + N10 * 4 + N9 * 5 + N8 * 6 + N7 * 7 + N6 * 8 + N5 * 9 + N4 * 2 + N3 * 3 + N2 * 4 + N1 * 5);
+        if ((verificador1 % 11) < 2)
+            verificador1 = 0;
+        else
+            verificador1 = 11 - (verificador1 % 11);
+
+        verificador2 = (verificador1 * 2 + N12 * 3 + N11 * 4 + N10 * 5 + N9 * 6 + N8 * 7 + N7 * 8 + N6 * 9 + N5 * 2 + N4 * 3 + N3 * 4 + N2 * 5 + N1 * 6);
+        if ((verificador2 % 11) < 2)
+            verificador2 = 0;
+        else
+            verificador2 = 11 - (verificador2 % 11);
+
+        confere = (S1 + S2 + "." + S3 + S4 + S5 + "." + S6 + S7 + S8 + "/" + S9 + S10 + S11 + S12 + "-" + verificador1+""+verificador2);
+
+
+        if (confere.equals(cnpj) ){
+            return true;
+        }
+        else
+            return false;
+
+    }
+
 }
