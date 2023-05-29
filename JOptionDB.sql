@@ -83,6 +83,42 @@ SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
+INSERT INTO `joptionpanedb`.`enderecos`
+(`idenderecos`,
+`cep`,
+`logradouro`,
+`complemento`,
+`bairro`,
+`cidade`,
+`uf`)
+VALUES
+(default,
+"01302907",
+"Rua da Consolação",
+"860",
+"Higienópolis",
+"São Paulo",
+"SP");
+
+INSERT INTO `joptionpanedb`.`enderecos`
+(`idenderecos`,
+`cep`,
+`logradouro`,
+`complemento`,
+`bairro`,
+`cidade`,
+`uf`)
+VALUES
+(default,
+04696000,
+"Avenida Engenheiro Eusébio Stevaux",
+"",
+"Jurubatuba",
+"São Paulo",
+"SP");
+
+
+
 INSERT INTO `joptionpanedb`.`empresas`
 (`id_empresas`,
 `cnpj_empresas`,
@@ -94,7 +130,7 @@ VALUES
 (default,
 "12345678901234",
 "123456789",
-"12345678",
+"04696000",
 default,
 "Senac");
 
@@ -109,7 +145,7 @@ VALUES
 (default,
 "43210987654321",
 "987654321",
-"87654321",
+"01302907",
 default,
 "Makenzie");
 

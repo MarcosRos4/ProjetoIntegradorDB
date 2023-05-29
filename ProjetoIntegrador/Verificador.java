@@ -1,7 +1,9 @@
 package ProjetoIntegrador;
 
-public class Verificador {
+import ProjetoIntegrador.viacep.servico.ServicoDeCep;
 
+public class Verificador {
+    
     public boolean verificarRG(String rg){//tem q ser inserido como "000000000"
         int soma=0;
         int mult=9;
@@ -25,7 +27,7 @@ public class Verificador {
 
         return false;
     }
-     public boolean verificarCPF(String cpf){//Precisa inserir o CPF como "000.000.000-00"
+    public boolean verificarCPF(String cpf){//Precisa inserir o CPF como "000.000.000-00"
          String S1,S2,S3,S4,S5,S6,S7,S8,S9, confere = "";
          int N1, N2 , N3,N4, N5, N6, N7,N8,N9, verificador1, verificador2;
          S1= cpf.substring(0, 1); N1 = Integer.parseInt(S1);
@@ -62,7 +64,6 @@ public class Verificador {
          else
              return false;
      }
-
     public static boolean verificarCNPJ(String cnpj){//Precisa inserir o CNPJ como "00.000.000/0000-00"
         String S1,S2,S3,S4,S5,S6,S7,S8,S9, S10, S11, S12, confere = "";
         int N1, N2 , N3, N4, N5, N6, N7, N8, N9, N10, N11, N12, verificador1, verificador2;
@@ -104,5 +105,16 @@ public class Verificador {
             return false;
 
     }
+    public static boolean verificadorCep(String cep) {
 
+        ServicoDeCep servico = new ServicoDeCep();
+        try {
+            ServicoDeCep.buscaEnderecoPelo(cep);
+        } catch (Exception e) {
+            
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
 }

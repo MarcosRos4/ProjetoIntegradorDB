@@ -1,6 +1,7 @@
 package ProjetoIntegrador.model.dao;
 // import das classes para a execução das querys e a obtenção das respostas
 import javax.swing.*;
+import ProjetoIntegrador.Verificador;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -13,16 +14,21 @@ public class EmpresaDao {
 
     // insere uma nova empresa à tabela contas
     public void inserirEmpresas(String nome, String cnpj, String ie, String cep) {
-        try {
-            String query = String.format(
+        if (Verificador.verificarCNPJ(cnpj) && Verificador.verificadorCep(cep)) {
+            try {
+                String query = String.format(
                 "INSERT INTO empresas (`id_empresas`, `cnpj_empresas`, `ie_empresas`, `cep_empresas`, `criacao_empresas`, `nome_empresas`)"+
                 // valores numero_da_conta é gerado automaticamente pelo BD, o saldo default é 0
                 " VALUES(default, '%s', '%s', '%s', default, '%s');",cnpj,ie,cep,nome);
-            stm.executeUpdate(query);
-            JOptionPane.showMessageDialog(null,String.format("Empresa %s Incluida com SUCESSO" , nome));
-            
-        } catch(Exception e) {
-            System.out.println("Erro na Inclusao: "+ e);
+                stm.executeUpdate(query);
+                JOptionPane.showMessageDialog(null,String.format("Empresa %s Incluida com SUCESSO" , nome));
+                
+            } catch(Exception e) {
+                System.out.println("Erro na Inclusao: "+ e);
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null,"CNPJ ou CEP invalido");
         }
     }
 

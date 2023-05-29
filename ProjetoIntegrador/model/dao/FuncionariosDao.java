@@ -41,16 +41,9 @@ public class FuncionariosDao {
 
         if(verificador.verificarCPF(cpf) && verificador.verificarRG(rg)) {
         try {
-            String query = String.format("UPDATE funcionarios SET nome_funcionarios = '%s' WHERE id_funcionarios = %s;", nome, id);
-            stm.executeUpdate(query);
-
-            query = String.format("UPDATE funcionarios SET cpf_funcionarios = '%s' WHERE id_funcionarios = %s;", cpf, id);
-            stm.executeUpdate(query);
-
-            query = String.format("UPDATE funcionarios SET rg_funcionarios = '%s' WHERE id_funcionarios = %s;", rg, id);
-            stm.executeUpdate(query);
-
-            query = String.format("UPDATE funcionarios SET empresas_id_empresas = '%s' WHERE id_funcionarios = %s;", id_empresa, id);
+            String query = String.format(
+            "UPDATE funcionarios SET `rg_funcionarios` = %s, `cpf_funcionarios` = %s, `nome_funcionarios` = %s, `empresas_id_empresas` = %s  WHERE `id_funcionarios` = %s;",
+            rg, cpf, nome, id_empresa, id);
             stm.executeUpdate(query);
 
             System.out.println(String.format("Funcionario(a) Numero: %s alterado(a) com sucesso" , id));
@@ -65,8 +58,7 @@ public class FuncionariosDao {
     public String getFuncionario(String numero_do_funcionario) {
         String rg,cpf,nome,criacao,id_empresa;
         try {
-            result = stm.executeQuery(String.format("SELECT * FROM joptionpanedb.funcionarios WHERE id_funcionarios = %s;",
-                    numero_do_funcionario));
+            result = stm.executeQuery(String.format("SELECT * FROM joptionpanedb.funcionarios WHERE id_funcionarios = %s;", numero_do_funcionario));
             result.next();
             rg=result.getString(2);
             cpf=result.getString(3);

@@ -1,7 +1,7 @@
 package ProjetoIntegrador.view;
 
 import ProjetoIntegrador.model.dao.EmpresaDao;
-
+import ProjetoIntegrador.model.dao.EnderecoDao;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,8 +15,8 @@ public class CriarEmpresaView  extends JFrame implements ActionListener {
     JMenuItem menuMain,empresa,funcionario,sair;
 
     static String CNPJ,NOME,IE,CEP;
-
     static EmpresaDao empresaDao=new EmpresaDao();
+    static EnderecoDao enderecoDao = new EnderecoDao();
     public CriarEmpresaView(){
         setVisible(true);
         setSize(640,480);
@@ -120,6 +120,7 @@ public class CriarEmpresaView  extends JFrame implements ActionListener {
             CNPJ=cnpj.getText();
 
             empresaDao.inserirEmpresas(NOME,CNPJ,IE,CEP);
+            enderecoDao.inserirEndereco(CEP);
 
         }
         else if (e.getSource() == b2){
