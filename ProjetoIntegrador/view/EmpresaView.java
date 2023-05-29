@@ -1,4 +1,4 @@
-package ContaCorrenteProjeto.view;
+package ProjetoIntegrador.view;
 
 import javax.swing.*;
 import java.awt.*;

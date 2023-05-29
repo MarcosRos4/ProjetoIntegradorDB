@@ -1,7 +1,7 @@
-package ContaCorrenteProjeto.controller;
+package ProjetoIntegrador.controller;
 
 
-import ContaCorrenteProjeto.model.dao.FuncionariosDao;
+import ProjetoIntegrador.model.dao.FuncionariosDao;
 
 public class TransferenciaController {
 

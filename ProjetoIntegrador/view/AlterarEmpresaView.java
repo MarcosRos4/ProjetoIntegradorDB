@@ -1,7 +1,7 @@
-package ContaCorrenteProjeto.view;
+package ProjetoIntegrador.view;
 
-import ContaCorrenteProjeto.model.dao.EmpresaDao;
-import ContaCorrenteProjeto.model.dao.FuncionariosDao;
+import ProjetoIntegrador.model.dao.EmpresaDao;
+import ProjetoIntegrador.model.dao.FuncionariosDao;
 
 import javax.swing.*;
 import java.awt.*;

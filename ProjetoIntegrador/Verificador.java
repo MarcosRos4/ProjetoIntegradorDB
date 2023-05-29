@@ -1,4 +1,4 @@
-package ContaCorrenteProjeto;
+package ProjetoIntegrador;
 
 public class Verificador {
 

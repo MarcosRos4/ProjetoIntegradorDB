@@ -1,6 +1,6 @@
-package ContaCorrenteProjeto.controller;
+package ProjetoIntegrador.controller;
 // importa classe que vai acessar o banco de dados
-import ContaCorrenteProjeto.model.dao.EmpresaDao;
+import ProjetoIntegrador.model.dao.EmpresaDao;
 
 public class EmpresaController {
     // numero da conta que vai ser acessada

@@ -1,4 +1,4 @@
-package ContaCorrenteProjeto.model.dao;
+package ProjetoIntegrador.model.dao;
 // import das classes para a execução das querys e a obtenção das respostas
 import javax.swing.*;
 import java.sql.ResultSet;

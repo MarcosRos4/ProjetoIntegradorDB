@@ -1,4 +1,4 @@
-package ContaCorrenteProjeto.model.dao;
+package ProjetoIntegrador.model.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

@@ -1,4 +1,4 @@
-package ContaCorrenteProjeto.view;
+package ProjetoIntegrador.view;
 // importa a classe scanner para imput do usuario
 import java.util.Scanner;
 public class AppView {

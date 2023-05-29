@@ -1,6 +1,6 @@
-package ContaCorrenteProjeto.model.dao;
+package ProjetoIntegrador.model.dao;
 
-import ContaCorrenteProjeto.Verificador;
+import ProjetoIntegrador.Verificador;
 
 import javax.swing.*;
 import java.sql.ResultSet;
