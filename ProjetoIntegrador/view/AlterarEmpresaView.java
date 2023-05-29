@@ -52,7 +52,7 @@ public class AlterarEmpresaView extends JFrame implements ActionListener {
         newJLabel("ID DA EMPRESA:", 5, 20, 120, 20);
         id = newJTextField("",150, 20, 170, 30);
         newJLabel("NOVO CNPJ:", 5, 60, 80, 20);
-        cnpj = newJTextField("",100, 60, 170, 30);
+        cnpj = newJTextField("00.000.000/0000-00",100, 60, 170, 30);
         newJLabel("NOVO CEP:", 300, 60, 80, 20);
         cep = newJTextField("",380, 60, 170, 30);
 
