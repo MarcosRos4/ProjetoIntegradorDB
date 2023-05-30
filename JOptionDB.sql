@@ -24,9 +24,9 @@ DROP TABLE IF EXISTS `JOptionpaneDB`.`empresas` ;
 
 CREATE TABLE IF NOT EXISTS `JOptionpaneDB`.`empresas` (
   `id_empresas` INT NOT NULL AUTO_INCREMENT,
-  `cnpj_empresas` CHAR(14) NOT NULL,
-  `ie_empresas` CHAR(9) NOT NULL,
-  `cep_empresas` CHAR(8) NOT NULL,
+  `cnpj_empresas` varCHAR(45) NOT NULL,
+  `ie_empresas` varCHAR(45) NOT NULL,
+  `cep_empresas` varCHAR(45) NOT NULL,
   `criacao_empresas` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `nome_empresas` VARCHAR(45) NULL,
   PRIMARY KEY (`id_empresas`),

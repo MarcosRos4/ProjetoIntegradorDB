@@ -54,7 +54,7 @@ public class AlterarEmpresaView extends JFrame implements ActionListener {
         newJLabel("NOVO CNPJ:", 5, 60, 80, 20);
         cnpj = newJTextField("00.000.000/0000-00",100, 60, 170, 30);
         newJLabel("NOVO CEP:", 300, 60, 80, 20);
-        cep = newJTextField("",380, 60, 170, 30);
+        cep = newJTextField("00000000",380, 60, 170, 30);
 
         newJLabel("NOVO NOME:", 5, 120, 100, 20);
         nome = newJTextField("",150, 120, 200, 30);
@@ -126,7 +126,7 @@ public class AlterarEmpresaView extends JFrame implements ActionListener {
 
         } else if (e.getSource() == b2) {
             this.setVisible(false);
-            FuncionarioView fv = new FuncionarioView();
+            EmpresaView ev= new EmpresaView();
         }
 
         if(e.getSource()== empresa){

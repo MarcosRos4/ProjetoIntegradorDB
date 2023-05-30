@@ -121,7 +121,7 @@ public class VerEmpresaView extends JFrame implements ActionListener {
         }
         else if (e.getSource() == b2){
             this.setVisible(false);
-            FuncionarioView fv= new FuncionarioView();
+            EmpresaView ev= new EmpresaView();
         }
 
         if(e.getSource()== empresa){
