@@ -3,6 +3,7 @@ package ProjetoIntegrador.model.dao;
 // import das classes para a execução das querys e a obtenção das respostas
 import javax.swing.*;
 
+import ProjetoIntegrador.Verificador;
 import ProjetoIntegrador.viacep.dominio.Endereco;
 import ProjetoIntegrador.viacep.servico.ServicoDeCep;
 
@@ -18,17 +19,23 @@ public class EnderecoDao {
 
     // insere uma nova Endereco à tabela contas
     public void inserirEndereco(String cep) {
-        try {
-            Endereco endereco = ServicoDeCep.buscaEnderecoPelo(cep);
-            String query = String.format(// valores idenderecos é gerado automaticamente pelo BD, o saldo default é 0
-            "INSERT INTO enderecos(`idenderecos`,`cep`,`logradouro`,`complemento`,`bairro`,`cidade`,`uf`) VALUES (default, '%s', '%s', '%s', '%s', '%s', '%s');",
-            cep, endereco.getLogradouro(), endereco.getComplemento(), endereco.getBairro(), endereco.getLocalidade(), endereco.getUf());
-            stm.executeUpdate(query);
-            JOptionPane.showMessageDialog(null,String.format("CEP %s (%s) Incluido com SUCESSO" , cep, endereco.getLogradouro()));
-            
-        } catch(Exception e) {
-            System.out.println("Erro na Inclusao: "+ e);
+        if (Verificador.verificadorCep(cep)) {
+            try {
+                Endereco endereco = ServicoDeCep.buscaEnderecoPelo(cep);
+                String query = String.format(// valores idenderecos é gerado automaticamente pelo BD, o saldo default é 0
+                        "INSERT INTO enderecos(`idenderecos`,`cep`,`logradouro`,`complemento`,`bairro`,`cidade`,`uf`) VALUES (default, '%s', '%s', '%s', '%s', '%s', '%s');",
+                        cep, endereco.getLogradouro(), endereco.getComplemento(), endereco.getBairro(), endereco.getLocalidade(), endereco.getUf());
+                stm.executeUpdate(query);
+                JOptionPane.showMessageDialog(null,String.format("CEP %s (%s) Incluido com SUCESSO" , cep, endereco.getLogradouro()));
+
+            } catch(Exception e) {
+                JOptionPane.showMessageDialog(null,e.getMessage());
+            }
         }
+        else {
+            JOptionPane.showMessageDialog(null,"O CEP "+cep+" não pode ser incluido");
+        }
+
     }
 
     public void atualizarEndereco(String idenderecos, String cep, String logradouro, String complemento, String bairro, String cidade, String uf) {

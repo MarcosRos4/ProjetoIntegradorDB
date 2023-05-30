@@ -64,19 +64,17 @@ ENGINE = InnoDB;
 -- Table `JOptionpaneDB`.`enderecos`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `JOptionpaneDB`.`enderecos` ;
-
 CREATE TABLE `enderecos` (
   `idenderecos` int NOT NULL AUTO_INCREMENT,
-  `cep` char(8) DEFAULT NULL,
+  `cep` char(9) DEFAULT NULL,
   `logradouro` varchar(45) DEFAULT NULL,
   `complemento` varchar(45) DEFAULT NULL,
   `bairro` varchar(45) DEFAULT NULL,
   `cidade` varchar(45) DEFAULT NULL,
   `uf` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idenderecos`),
-  UNIQUE KEY `idceps_UNIQUE` (`idenderecos`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
+  UNIQUE KEY `idceps_UNIQUE` (`idenderecos`),
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
