@@ -105,7 +105,7 @@ public class Verificador {
             return false;
 
     }
-    public static boolean verificadorCep(String cep) {
+    public static boolean verificadorCep(String cep) {//Precisa inserir o CEP como "00000000"
 
         ServicoDeCep servico = new ServicoDeCep();
         try {

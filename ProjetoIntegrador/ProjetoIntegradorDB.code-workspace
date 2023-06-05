@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"name": "ProjetoIntegradorDB",
+			"path": ".."
+		}
+	],
+	"settings": {
+		"java.project.referencedLibraries": [
+			"lib/**/*.jar",
+			"c:\\coisasdovini2\\Programacao\\verissimobanco\\mysql-connector-j-8.0.33.jar",
+			"c:\\Users\\bolin\\Downloads\\gson-2.8.5.jar"
+		]
+	}
+}
