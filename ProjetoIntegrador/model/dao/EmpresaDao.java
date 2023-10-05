@@ -24,7 +24,7 @@ public class EmpresaDao {
                 JOptionPane.showMessageDialog(null,String.format("Empresa %s Incluida com SUCESSO" , nome));
                 
             } catch(Exception e) {
-                System.out.println("Erro na Inclusao: "+ e);
+                JOptionPane.showMessageDialog(null,e.getMessage());
             }
         }
         else{

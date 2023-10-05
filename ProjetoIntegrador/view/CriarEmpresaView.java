@@ -20,7 +20,7 @@ public class CriarEmpresaView  extends JFrame implements ActionListener {
     public CriarEmpresaView(){
         setVisible(true);
         setSize(640,480);
-        setTitle("Criação de funcionarios");
+        setTitle("Criação de empresa");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -50,9 +50,9 @@ public class CriarEmpresaView  extends JFrame implements ActionListener {
         b1= criarJButton("Criar",'G',150,240);
         b2= criarJButton("Voltar",'C',350,240);
         newJLabel("CEP:",5,60,30,20);
-        cep=newJTextField("",50,60,170,30);
+        cep=newJTextField("00000000",50,60,170,30);
         newJLabel("CNPJ:",230,60,40,20);
-        cnpj=newJTextField("",275,60,170,30);
+        cnpj=newJTextField("00.000.000/0000-00",275,60,170,30);
 
         newJLabel("NOME:",5,120,40,20);
         nome=newJTextField("",70,120,200,30);
@@ -125,7 +125,7 @@ public class CriarEmpresaView  extends JFrame implements ActionListener {
         }
         else if (e.getSource() == b2){
             this.setVisible(false);
-            FuncionarioView fv= new FuncionarioView();
+            EmpresaView ev= new EmpresaView();
         }
 
         if(e.getSource()== empresa){

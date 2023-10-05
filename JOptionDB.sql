@@ -24,9 +24,9 @@ DROP TABLE IF EXISTS `JOptionpaneDB`.`empresas` ;
 
 CREATE TABLE IF NOT EXISTS `JOptionpaneDB`.`empresas` (
   `id_empresas` INT NOT NULL AUTO_INCREMENT,
-  `cnpj_empresas` CHAR(14) NOT NULL,
-  `ie_empresas` CHAR(9) NOT NULL,
-  `cep_empresas` CHAR(8) NOT NULL,
+  `cnpj_empresas` varCHAR(45) NOT NULL,
+  `ie_empresas` varCHAR(45) NOT NULL,
+  `cep_empresas` varCHAR(45) NOT NULL,
   `criacao_empresas` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `nome_empresas` VARCHAR(45) NULL,
   PRIMARY KEY (`id_empresas`),
@@ -64,19 +64,17 @@ ENGINE = InnoDB;
 -- Table `JOptionpaneDB`.`enderecos`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `JOptionpaneDB`.`enderecos` ;
-
 CREATE TABLE `enderecos` (
   `idenderecos` int NOT NULL AUTO_INCREMENT,
-  `cep` char(8) DEFAULT NULL,
+  `cep` char(9) DEFAULT NULL,
   `logradouro` varchar(45) DEFAULT NULL,
   `complemento` varchar(45) DEFAULT NULL,
   `bairro` varchar(45) DEFAULT NULL,
   `cidade` varchar(45) DEFAULT NULL,
   `uf` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idenderecos`),
-  UNIQUE KEY `idceps_UNIQUE` (`idenderecos`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
+  UNIQUE KEY `idceps_UNIQUE` (`idenderecos`),
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

@@ -33,18 +33,4 @@ public class ServicoDeCep {
             throw new Exception("ERRO: " + e);
         }
     }
-
-    public static void main(String[] args) {
-        try{
-            Endereco poggers= ServicoDeCep.buscaEnderecoPelo("04794000");
-            System.out.println(poggers.getCep());
-            System.out.println(poggers.getLocalidade());
-            System.out.println(poggers.getLogradouro());
-            System.out.println(poggers.getBairro());
-            System.out.println(poggers.getUf());
-            System.out.println(poggers.getComplemento());
-        }
-        catch(Exception e){System.out.println(e.getMessage());}
-        
-    }
 }

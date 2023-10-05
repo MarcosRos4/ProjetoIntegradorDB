@@ -1,5 +1,6 @@
 package ProjetoIntegrador;
 
+import ProjetoIntegrador.viacep.dominio.Endereco;
 import ProjetoIntegrador.viacep.servico.ServicoDeCep;
 
 public class Verificador {
@@ -108,8 +109,13 @@ public class Verificador {
     public static boolean verificadorCep(String cep) {//Precisa inserir o CEP como "00000000"
 
         ServicoDeCep servico = new ServicoDeCep();
+        Endereco endereco = new Endereco();
         try {
-            ServicoDeCep.buscaEnderecoPelo(cep);
+            endereco = servico.buscaEnderecoPelo(cep);
+            if (endereco.getLogradouro() == null) {
+                return  false;
+            }
+            
         } catch (Exception e) {
             
             e.printStackTrace();
